@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Art713.Win8App.Common;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -39,7 +40,7 @@ namespace Art713.Win8App
         /// результатов поиска и т. д.
         /// </summary>
         /// <param name="args">Сведения о запросе и обработке запуска.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -50,9 +51,18 @@ namespace Art713.Win8App
                 // Создание фрейма, который станет контекстом навигации, и переход к первой странице
                 rootFrame = new Frame();
 
+                SuspensionManager.RegisterFrame(rootFrame,"AppFrame");
+
                 if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Загрузить состояние за ранее приостановленного приложения
+                    try
+                    {
+                        await SuspensionManager.RestoreAsync();
+                    }
+                    catch (Exception exception)
+                    {
+                        // restoring error..
+                    }
                 }
 
                 // Размещение фрейма в текущем окне
@@ -80,10 +90,10 @@ namespace Art713.Win8App
         /// </summary>
         /// <param name="sender">Источник запроса приостановки.</param>
         /// <param name="e">Сведения о запросе приостановки.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Сохранить состояние приложения и остановить все фоновые операции
+            await SuspensionManager.SaveAsync();            
             deferral.Complete();
         }
     }
