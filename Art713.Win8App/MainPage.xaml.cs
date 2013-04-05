@@ -36,10 +36,22 @@ namespace Art713.Win8App
         {
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new MessageDialog("Hello, world", "Greeting");
-            dlg.ShowAsync();
+            //dlg.ShowAsync();
+            
+            dlg.Commands.Add(new UICommand("Комманда 1", (parameters) => 
+            {
+                //
+            }));
+            dlg.Commands.Add(new UICommand("Комманда 2"));
+            dlg.Commands.Add(new UICommand("Комманда 3"){Id = 3});
+
+            dlg.DefaultCommandIndex = 1;
+            dlg.CancelCommandIndex = 2;
+
+            var command = await dlg.ShowAsync();
         }
     }
 }
