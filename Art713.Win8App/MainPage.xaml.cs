@@ -53,5 +53,10 @@ namespace Art713.Win8App
 
             var command = await dlg.ShowAsync();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (SecondPage),"string parameter");
+        }
     }
 }

@@ -26,6 +26,12 @@ namespace Art713.Win8App
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var parameter = e.Parameter as string;
+            base.OnNavigatedTo(e);
+        }
+
         /// <summary>
         /// Заполняет страницу содержимым, передаваемым в процессе навигации. Также предоставляется любое сохраненное состояние
         /// при повторном создании страницы из предыдущего сеанса.
