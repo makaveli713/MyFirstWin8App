@@ -6,9 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="Art713ButtonStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="Red"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
+        <Button Style="{StaticResource Art713ButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
         <Button Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
     </Grid>
