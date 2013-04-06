@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Art713.Win8App.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -44,6 +45,10 @@ namespace Art713.Win8App
         /// сеанса. Это значение будет равно NULL при первом посещении страницы.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            if(pageState==null)
+                return;
+            if (pageState.ContainsKey("text"))            
+                txtMain.Text = pageState["text"] as string;            
         }
 
         /// <summary>
@@ -54,6 +59,7 @@ namespace Art713.Win8App
         /// <param name="pageState">Пустой словарь, заполняемый сериализуемым состоянием.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+            pageState["text"] = txtMain.Text;
         }
     }
 }
