@@ -6,7 +6,12 @@
 
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="Red"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
+                
 
                 <!-- 
                     Стили, определяющие общие особенности внешнего вида и функциональности платформы
