@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <local:DoubleToBrushConverter x:Key="DoubleToBrushConverter"/>
         <Style TargetType="Button" x:Key="Art713ButtonStyle">
             <Setter Property="Background">
                 <Setter.Value>
@@ -40,6 +41,7 @@
             </Button.Template>
         </Button>
         <Slider Name="MySlider" Margin="532,313,447,403"/>
-        <TextBox Text="{Binding Value, ElementName=MySlider, Mode=TwoWay}" Width="100" Margin="532,365,734,365"/>
+        <TextBox Text="{Binding Value, ElementName=MySlider, Mode=TwoWay}" 
+                 Background="{Binding Value, ElementName=MySlider, Converter={StaticResource DoubleToBrushConverter}}" Width="100" Margin="532,365,734,365"/>
     </Grid>
 </Page>
