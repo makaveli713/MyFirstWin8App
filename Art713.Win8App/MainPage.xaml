@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    <Page.Resources>        
+
+    <Page.Resources>
         <Style TargetType="Button" x:Key="Art713ButtonStyle">
             <Setter Property="Background">
                 <Setter.Value>
@@ -15,7 +15,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Button" x:Key="Art713NewButtonStyle" BasedOn="{StaticResource Art713ButtonStyle}">            
+        <Style TargetType="Button" x:Key="Art713NewButtonStyle" BasedOn="{StaticResource Art713ButtonStyle}">
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </Page.Resources>
@@ -23,22 +23,23 @@
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
         <Button Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button Content="newStyle" Foreground="White" Width="100" Height="100" Margin="924,332,0,336" Click="Button_Click_2">                        
-            <Button.Template>                
-                <ControlTemplate>                    
-                    <Grid>                        
+        <Button Content="newStyle" Foreground="White" Width="100" Height="100" Margin="924,332,0,336" Click="Button_Click_2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
                         <Ellipse 
                             Stroke="Aquamarine" 
                             StrokeThickness="3" 
                             StrokeDashArray="5 1"
                             VerticalAlignment="Stretch"
-                            HorizontalAlignment="Stretch"/>  
-                            <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>                        
+                            HorizontalAlignment="Stretch"/>
+                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
+        <Slider Name="MySlider" Margin="532,313,447,403"/>
+        <TextBox Text="{Binding Value, ElementName=MySlider, Mode=TwoWay}" Width="100" Margin="532,365,734,365"/>
     </Grid>
 </Page>
