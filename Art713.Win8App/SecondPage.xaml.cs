@@ -24,6 +24,7 @@ namespace Art713.Win8App
         public SecondPage()
         {
             this.InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
