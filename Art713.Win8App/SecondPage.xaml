@@ -36,6 +36,10 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+        
+        <Grid Grid.Row="1">
+            <TextBox x:Name="txtMain" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
+        </Grid>
 
         <VisualStateManager.VisualStateGroups>
 
