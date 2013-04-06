@@ -58,5 +58,10 @@ namespace Art713.Win8App
         {
             Frame.Navigate(typeof (SecondPage),"string parameter");
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (SecondPage));
+        }
     }
 }

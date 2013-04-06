@@ -23,6 +23,22 @@
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
         <Button Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="newStyle" Foreground="White" Width="100" Height="100" Margin="924,332,0,336" Click="Button_Click_2">                        
+            <Button.Template>                
+                <ControlTemplate>                    
+                    <Grid>                        
+                        <Ellipse 
+                            Stroke="Aquamarine" 
+                            StrokeThickness="3" 
+                            StrokeDashArray="5 1"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"/>  
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>                        
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Page>
