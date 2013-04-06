@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     
-    <Page.Resources>
+    <Page.Resources>        
         <Style TargetType="Button" x:Key="Art713ButtonStyle">
             <Setter Property="Background">
                 <Setter.Value>
@@ -15,11 +15,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Button" x:Key="Art713NewButtonStyle" BasedOn="{StaticResource Art713ButtonStyle}">            
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Button Style="{StaticResource Art713ButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
-        <Button Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Style="{StaticResource Art713NewButtonStyle}" Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
     </Grid>
 </Page>
