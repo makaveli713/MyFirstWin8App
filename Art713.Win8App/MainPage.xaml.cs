@@ -24,7 +24,14 @@ namespace Art713.Win8App
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            var person = new Person
+                {
+                    FirstName = "Artem",
+                    LastName = "Trubitsyn",
+                    Email = "cherubim713@gmail.com"
+                };
+            spPerson.DataContext = person;
         }
 
         /// <summary>
