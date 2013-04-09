@@ -37,10 +37,20 @@ namespace RssApp
         /// </param>
         /// <param name="pageState">Словарь состояния, сохраненного данной страницей в ходе предыдущего
         /// сеанса. Это значение будет равно NULL при первом посещении страницы.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            this.DefaultViewModel["Groups"] = sampleDataGroups;
+            this.DefaultViewModel["Groups"] = SampleDataSource.AllGroups;
+
+            // Примеры блогов
+            await SampleDataSource.AddGroupForFeedAsync(
+            "http://blogs.msdn.com/b/mikcher/rss.aspx");
+            
+            await SampleDataSource.AddGroupForFeedAsync(
+            "http://blogs.msdn.com/b/stasus/rss.aspx");
+            
+            await SampleDataSource.AddGroupForFeedAsync(
+            "http://blogs.msdn.com/b/kichinsky/rss.aspx");
         }
 
         /// <summary>

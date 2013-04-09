@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -252,8 +254,52 @@ namespace RssApp.Data
                 imagePath: feed.ImageUri != null ? feed.ImageUri.ToString() : null,
                 description: null);
 
+            foreach (var i in feed.Items)
+            {
+                var imgPath = GetImageFromPostContents(i);
+
+                if (imgPath != null && feedGroup.Image == null)
+                {
+                    feedGroup.SetImage(imgPath);
+                }
+
+                var dataItem = new SampleDataItem(
+                    uniqueId: i.Id,
+                    title: i.Title.Text,
+                    subtitle: null,
+                    imagePath: imgPath,
+                    description: null,
+                    content: i.Summary.Text,
+                    @group: feedGroup);
+
+                feedGroup.Items.Add(dataItem);
+            } 
+
             AllGroups.Add(feedGroup);
             return true;
+        }
+
+        private static string GetImageFromPostContents(SyndicationItem item)
+        {
+            var regex = new Regex("[src href]\\s*=\\s*(?:\"(?<1>[^\"]*)\"|(?<1>\\S+))");
+
+            var matches = regex.Matches(item.Summary.Text);
+
+            return matches
+                .Cast<Match>()
+                .Where(m =>
+            {
+                Uri url;
+                if (Uri.TryCreate(m.Groups[1].Value, UriKind.Absolute, out url))
+                {
+                    string ext = Path.GetExtension(url.AbsolutePath).ToLower();
+                    if (ext == ".png" || ext == ".jpg"
+                       || ext == ".jpeg") return true;
+                }
+                return false;
+            })
+            .Select(m => m.Groups[1].Value)
+            .FirstOrDefault();
         }
     }
 }
