@@ -17,7 +17,7 @@
         </AppBar>
     </Page.TopAppBar>
     <Page.BottomAppBar>
-        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0" Background="Crimson">
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0" Background="Crimson" IsSticky="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
