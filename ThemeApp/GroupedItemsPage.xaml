@@ -18,7 +18,20 @@
     </Page.TopAppBar>
     <Page.BottomAppBar>
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0" Background="Crimson">
-            <!-- something -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Кнопка 1"/>
+                    <Button Style="{StaticResource PageAppBarButtonStyle}" AutomationProperties.Name="Кнопка 2"/>
+                    <Button Style="{StaticResource VideoChatAppBarButtonStyle}" AutomationProperties.Name="Кнопка 3"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Style="{StaticResource BulletsAppBarButtonStyle}" AutomationProperties.Name="Кнопка 4"/>
+                </StackPanel>
+            </Grid>
         </AppBar>
         
     </Page.BottomAppBar>
