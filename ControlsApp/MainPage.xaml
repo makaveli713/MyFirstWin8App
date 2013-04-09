@@ -14,7 +14,22 @@
         </Grid.RowDefinitions>
         
         <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>        
-        <GridView x:Name="gvMain" Grid.Row="1" Padding="116,37,40,46"/>
+        <GridView x:Name="gvMain" Grid.Row="1" Padding="116,37,40,46">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Left" Width="160" Height="160">
+                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                            <Image Source="/Assets/trueAmericanAva.jpg" Stretch="UniformToFill"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                            <TextBlock Text="{Binding FirstName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                            <TextBlock Text="{Binding LastName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                            <TextBlock Text="{Binding Age}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
         
     </Grid>
 </Page>
