@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Media.Capture;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // Шаблон элемента пустой страницы задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234238
@@ -21,7 +15,7 @@ namespace Art713.Win8App
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
         public ObservableCollection<Person> Persons { get; set; }
 
@@ -69,7 +63,7 @@ namespace Art713.Win8App
             var dlg = new MessageDialog("Hello, world", "Greeting");
             //dlg.ShowAsync();
             
-            dlg.Commands.Add(new UICommand("Комманда 1", (parameters) => 
+            dlg.Commands.Add(new UICommand("Комманда 1", parameters => 
             {
                 //
             }));
@@ -79,7 +73,7 @@ namespace Art713.Win8App
             dlg.DefaultCommandIndex = 1;
             dlg.CancelCommandIndex = 2;
 
-            var command = await dlg.ShowAsync();
+            await dlg.ShowAsync();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -87,9 +81,21 @@ namespace Art713.Win8App
             Frame.Navigate(typeof (SecondPage),"string parameter");
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (SecondPage));
+            //Frame.Navigate(typeof (SecondPage));
+            var ui = new CameraCaptureUI();
+            ui.PhotoSettings.CroppedAspectRatio = new Size(16,9);
+
+            var file = await ui.CaptureFileAsync(CameraCaptureUIMode.Photo);
+
+            if (file!=null)
+            {
+                var bitmap = new BitmapImage();
+
+                bitmap.SetSource(await file.OpenAsync(FileAccessMode.Read));
+                Photo.Source = bitmap;
+            }
         }
     }
 }

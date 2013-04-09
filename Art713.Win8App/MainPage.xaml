@@ -22,6 +22,7 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Image Name="Photo"></Image>
         <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content = "Greeting" Click="Button_Click"></Button>
         <Button Content="Go to the second page" HorizontalAlignment="Left" Margin="734,365,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
         <Button Content="newStyle" Foreground="White" Width="100" Height="100" Margin="924,332,0,336" Click="Button_Click_2">
