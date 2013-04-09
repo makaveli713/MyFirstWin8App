@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Collections.Specialized;
+using Windows.Web.Syndication;
 
 // Модель данных, определяемая этим файлом, служит типичным примером строго типизированной
 // модели, которая поддерживает уведомление при добавлении, удалении или изменении членов. Выбранные
@@ -233,6 +235,25 @@ namespace RssApp.Data
         {
             var matches = AllGroups.SelectMany(group => group.Items).Where(item => item.UniqueId.Equals(uniqueId));
             return matches.Count() == 1 ? matches.First() : null;            
+        }
+
+        public static async Task<bool> AddGroupForFeedAsync(string feedUrl)
+        {
+            // Если блог уже добавлен - возвращаем false
+            if (GetGroup(feedUrl) != null) return false;
+
+            var feedClient = new SyndicationClient();
+            var feed = await feedClient.RetrieveFeedAsync(new Uri(feedUrl));
+
+            var feedGroup = new SampleDataGroup(
+                uniqueId: feedUrl,
+                title: feed.Title != null ? feed.Title.Text : null,
+                subtitle: feed.Subtitle != null ? feed.Subtitle.Text : null,
+                imagePath: feed.ImageUri != null ? feed.ImageUri.ToString() : null,
+                description: null);
+
+            AllGroups.Add(feedGroup);
+            return true;
         }
     }
 }

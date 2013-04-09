@@ -40,7 +40,6 @@ namespace RssApp
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             this.DefaultViewModel["Groups"] = sampleDataGroups;
         }
 
