@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -22,17 +23,36 @@ namespace Art713.Win8App
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public ObservableCollection<Person> Persons { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
+            Persons = new ObservableCollection<Person>();
+            DataContext = this;
+            var ivanov = new Person
+                {
+                    LastName = "Иванов",
+                    FirstName = "Иван",
+                    Email = "ivan.ivanov@foo.com"
+                };
+                Persons.Add(ivanov);
+            var petrov = new Person {LastName = "Петров", FirstName = "Петр", Email = "petr.petrov@foo.com"};
+            Persons.Add(petrov); 
+ 
+        var sidorov = new Person {LastName = "Сидоров", FirstName = "Сергей", Email = "sergey.sidorov@foo.com"};
+            Persons.Add(sidorov); 
+                
             var person = new Person
                 {
                     FirstName = "Artem",
                     LastName = "Trubitsyn",
                     Email = "cherubim713@gmail.com"
                 };
-            spPerson.DataContext = person;
-            person.Email = "1171913@mail.ru";
+            Persons.Add(person);
+
+            //spPerson.DataContext = person;
+            //person.Email = "1171913@mail.ru";
         }
 
         /// <summary>

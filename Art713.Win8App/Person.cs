@@ -4,7 +4,7 @@ using Art713.Win8App.Annotations;
 
 namespace Art713.Win8App
 {
-    class Person : INotifyPropertyChanged
+    public class Person : INotifyPropertyChanged
     {
         private string _firstName;
         private string _lastName;
