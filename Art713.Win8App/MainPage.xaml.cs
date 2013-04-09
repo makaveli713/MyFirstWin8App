@@ -32,6 +32,7 @@ namespace Art713.Win8App
                     Email = "cherubim713@gmail.com"
                 };
             spPerson.DataContext = person;
+            person.Email = "1171913@mail.ru";
         }
 
         /// <summary>
