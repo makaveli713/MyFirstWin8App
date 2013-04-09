@@ -61,6 +61,12 @@
                     </GroupStyle.Panel>
                 </GroupStyle>
             </GridView.GroupStyle>
+            <!-- Панель для самих групп -->
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
         </GridView>
         
     </Grid>
