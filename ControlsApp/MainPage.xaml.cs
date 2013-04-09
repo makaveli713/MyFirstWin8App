@@ -11,6 +11,7 @@ namespace ControlsApp
     public sealed partial class MainPage
     {
         private ObservableCollection<Person> _persons;
+        private ObservableCollection<PersonGroup> _groups;
 
         public MainPage()
         {
@@ -37,7 +38,27 @@ namespace ControlsApp
                     new Person {LastName = "Gregor", FirstName = "Luc", Age = 25}                    
                 };
 
-            gvMain.ItemsSource = _persons;
+            _groups = new ObservableCollection<PersonGroup>();
+
+            var developers = new PersonGroup {GroupName = "Разработчики" };
+            var designers = new PersonGroup {GroupName = "Дизайнеры"};
+            var managers = new PersonGroup {GroupName = "Менеджеры"};
+
+            _groups.Add(developers);
+            _groups.Add(designers);
+            _groups.Add(managers);
+
+            for (var i = 0; i < _persons.Count/3; i++)            
+                developers.Persons.Add(_persons[i]);
+            for (var i = _persons.Count/3; i < 2*(_persons.Count / 3); i++)            
+                designers.Persons.Add(_persons[i]);
+            for (var i = 2*(_persons.Count/3); i < _persons.Count; i++)            
+                managers.Persons.Add(_persons[i]);
+
+            cvsMain.Source = _groups;
+
+            //gvMain.ItemsSource = _persons;
+
         }
 
         /// <summary>
