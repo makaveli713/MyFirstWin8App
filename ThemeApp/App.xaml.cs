@@ -33,6 +33,7 @@ namespace ThemeApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            // RequestedTheme = ApplicationTheme.Light; // 2ой способ задания темы для приложения.
         }
 
         /// <summary>
