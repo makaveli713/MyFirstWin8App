@@ -6,12 +6,14 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Шаблон элемента страницы сгруппированных элементов задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234231
@@ -23,6 +25,55 @@ namespace ThemeApp
     /// </summary>
     public sealed partial class GroupedItemsPage : ThemeApp.Common.LayoutAwarePage
     {
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            var popup = new Popup
+                {
+                    IsLightDismissEnabled = true
+                };
+
+            var panel = new Grid
+                {
+                    Background = bottomAppBar.Background,
+                    Height = 250,
+                    Width = 150,
+                    Transitions = new TransitionCollection {new PopupThemeTransition()}
+                };
+
+            var btnMain = new Button
+                {
+                    Content = "Кнопка",
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+            
+            panel.Children.Add(btnMain);
+            popup.Child = panel;
+
+            var button = (Button)sender;
+            var transform = button.TransformToVisual(this);
+            var point = transform.TransformPoint(new Point());
+
+            popup.HorizontalOffset = point.X;
+            popup.VerticalOffset = Window.Current.CoreWindow.Bounds.Bottom - bottomAppBar.ActualHeight - panel.Height - 4;
+
+            popup.IsOpen = true;
+        }
+
+        private async void ButtonClick1(object sender, RoutedEventArgs e)
+        {
+            var popupMenu = new PopupMenu();
+            popupMenu.Commands.Add(new UICommand("Начать"));
+            popupMenu.Commands.Add(new UICommand("История"));
+            popupMenu.Commands.Add(new UICommand("Контакты"));
+
+            var button = (Button)sender;
+            var transform = button.TransformToVisual(this);
+            var point = transform.TransformPoint(new Point(45, -10));
+
+            await popupMenu.ShowAsync(point);
+        } 
+
         public GroupedItemsPage()
         {
             this.InitializeComponent();

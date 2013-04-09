@@ -24,8 +24,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Кнопка 1"/>
-                    <Button Style="{StaticResource PageAppBarButtonStyle}" AutomationProperties.Name="Кнопка 2"/>
+                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Кнопка 1" Click="ButtonClick"/>
+                    <Button Style="{StaticResource PageAppBarButtonStyle}" AutomationProperties.Name="Кнопка 2" Click="ButtonClick1"/>
                     <Button Style="{StaticResource VideoChatAppBarButtonStyle}" AutomationProperties.Name="Кнопка 3"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
