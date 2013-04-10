@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="ControlsApp.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="cvsMain" IsSourceGrouped="True" ItemsPath="Persons"/>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0" Background="Crimson" IsSticky="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Back" Click="GoToAnotherPage_OnClick"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+
+    </Page.BottomAppBar>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>
+
+        <ListView x:Name="lvMain" 
+                  Grid.Row="1" 
+                  Margin="0,-10,0,0" 
+                  Padding="10,0,0,60" 
+                  Width="320" 
+                  ItemsSource="{Binding Source={StaticResource cvsMain}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" 
+                                Width="60"
+                                Height="60">
+                            <Image Source="/Assets/trueAmericanAva.jpg" 
+                                   Stretch="UniformToFill"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding FirstName}" 
+                                       MaxHeight="40"
+                                       Style="{StaticResource ItemTextStyle}"/>
+                            <TextBlock Text="{Binding LastName}"               
+                                       Style="{StaticResource CaptionTextStyle}" 
+                                       TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Age}" 
+                                       Style="{StaticResource CaptionTextStyle}" 
+                                       TextWrapping="NoWrap"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="7,7,0,0">
+                                <Button Style="{StaticResource TextPrimaryButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding GroupName}" 
+                                                   Margin="3,-7,10,10" 
+                                                   Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{StaticResource ChevronGlyph}"            
+                                                   FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" 
+                                                   Style="{StaticResource GroupHeaderTextStyle}"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+    </Grid>
+</Page>
