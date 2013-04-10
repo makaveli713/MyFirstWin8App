@@ -18,9 +18,14 @@
         </Grid.RowDefinitions>
         
         <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>        
-        <GridView x:Name="gvMain" Grid.Row="1" Padding="116,37,40,46" ItemsSource="{Binding Source={StaticResource cvsMain}}">
+        <!--<GridView x:Name="gvMain" Grid.Row="1" Padding="116,37,40,46" ItemsSource="{Binding Source={StaticResource cvsMain}}">-->
+        <local:VariableGridView x:Name="gvMain"
+                                Grid.Row="1"
+                                Padding="116,37,40,46"
+                                ItemsSource="{Binding Source={StaticResource cvsMain}}">
             <!--Стиль каждого отдельно взятого элемента-->
-            <GridView.ItemTemplate>
+            <!--<GridView.ItemTemplate>-->
+            <local:VariableGridView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left">
                         <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
@@ -33,9 +38,11 @@
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
-            </GridView.ItemTemplate>
+            </local:VariableGridView.ItemTemplate>
+            <!--</GridView.ItemTemplate>-->
             <!--Стиль для элементов внутри каждой группы-->
-            <GridView.GroupStyle>
+            <!--<GridView.GroupStyle>-->
+            <local:VariableGridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate> 
                         <DataTemplate>
@@ -62,14 +69,18 @@
                         </ItemsPanelTemplate>
                     </GroupStyle.Panel>
                 </GroupStyle>
-            </GridView.GroupStyle>
+            </local:VariableGridView.GroupStyle>
+            <!--</GridView.GroupStyle>-->
             <!-- Панель для самих групп -->
-            <GridView.ItemsPanel>
+            <!--<GridView.ItemsPanel>-->
+            <local:VariableGridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+            </local:VariableGridView.ItemsPanel>
+            <!--</GridView.ItemsPanel>-->
+        </local:VariableGridView>
+        <!--</GridView>-->
         
     </Grid>
 </Page>
