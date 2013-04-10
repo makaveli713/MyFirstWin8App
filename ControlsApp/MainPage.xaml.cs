@@ -56,6 +56,7 @@ namespace ControlsApp
                 managers.Persons.Add(_persons[i]);
 
             cvsMain.Source = _groups;
+            gvZoomedOut.ItemsSource = cvsMain.View.CollectionGroups;
 
             //gvMain.ItemsSource = _persons;
 

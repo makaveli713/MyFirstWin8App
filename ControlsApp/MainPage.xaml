@@ -9,7 +9,7 @@
 
     <Page.Resources>
         <CollectionViewSource x:Name="cvsMain" IsSourceGrouped="True" ItemsPath="Persons"/>
-    </Page.Resources>
+    </Page.Resources>                               
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
