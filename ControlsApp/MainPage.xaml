@@ -19,6 +19,7 @@
         
         <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>        
         <GridView x:Name="gvMain" Grid.Row="1" Padding="116,37,40,46" ItemsSource="{Binding Source={StaticResource cvsMain}}">
+            <!--Стиль каждого отдельно взятого элемента-->
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left">
@@ -33,6 +34,7 @@
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
+            <!--Стиль для элементов внутри каждой группы-->
             <GridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate> 

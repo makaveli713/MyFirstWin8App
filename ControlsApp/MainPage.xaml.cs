@@ -20,9 +20,9 @@ namespace ControlsApp
             _persons = new ObservableCollection<Person>
                 {
                     new Person {LastName = "Boyko", FirstName = "Dima", Age = 21},
-                    new Person {LastName = "Senatorova", FirstName = "Olga", Age = 21},
-                    new Person {LastName = "Trubitsyn", FirstName = "Artem", Age = 22},
-                    new Person {LastName = "Dihtyarenko", FirstName = "Vasiliy", Age = 71}, 
+                    new Person {LastName = "Senatorova", FirstName = "Olga", Age = 21, VerticalSize = 2, HorizontalSize = 2},
+                    new Person {LastName = "Trubitsyn", FirstName = "Artem", Age = 22,VerticalSize = 2},
+                    new Person {LastName = "Dihtyarenko", FirstName = "Vasiliy", Age = 71, HorizontalSize = 2}, 
                     new Person {LastName = "Dihtyarenko", FirstName = "Elena", Age = 65},
                     new Person {LastName = "Gustin", FirstName = "Art", Age = 72},
                     new Person {LastName = "Huggin", FirstName = "Pat", Age = 65},
@@ -33,7 +33,7 @@ namespace ControlsApp
                     new Person {LastName = "Dihtyarenko", FirstName = "Elena", Age = 65},
                     new Person {LastName = "Rud", FirstName = "Ivan", Age = 21},
                     new Person {LastName = "Trubitsyna", FirstName = "Anna", Age = 15},
-                    new Person {LastName = "Trubitsyna", FirstName = "Irina", Age = 44},
+                    new Person {LastName = "Trubitsyna", FirstName = "Irina", Age = 44, HorizontalSize = 2},
                     new Person {LastName = "Trubitsyn", FirstName = "Vladimir", Age = 45},
                     new Person {LastName = "Gregor", FirstName = "Luc", Age = 25}                    
                 };
