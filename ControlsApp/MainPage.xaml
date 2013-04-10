@@ -9,7 +9,7 @@
 
     <Page.Resources>
         <CollectionViewSource x:Name="cvsMain" IsSourceGrouped="True" ItemsPath="Persons"/>
-    </Page.Resources>                               
+    </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -90,8 +90,8 @@
                     </GridView.ItemTemplate>
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapGrid ItemWidth="200" 
-                                      ItemHeight="200" 
+                            <WrapGrid ItemWidth="300" 
+                                      ItemHeight="300" 
                                       MaximumRowsOrColumns="1" 
                                       VerticalChildrenAlignment="Center" />
                         </ItemsPanelTemplate>
@@ -109,5 +109,60 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
+
+        <ListView x:Name="lvMain" 
+                  Grid.Row="1" 
+                  Margin="0,-10,0,0" 
+                  Padding="10,0,0,60" 
+                  Width="320" 
+                  ItemsSource="{Binding Source={StaticResource cvsMain}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" 
+                                Width="60"
+                                Height="60">
+                            <Image Source="/Assets/trueAmericanAva.jpg" 
+                                   Stretch="UniformToFill"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding FirstName}" 
+                                       MaxHeight="40"
+                                       Style="{StaticResource ItemTextStyle}"/>
+                            <TextBlock Text="{Binding LastName}"               
+                                       Style="{StaticResource CaptionTextStyle}" 
+                                       TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Age}" 
+                                       Style="{StaticResource CaptionTextStyle}" 
+                                       TextWrapping="NoWrap"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="7,7,0,0">
+                                <Button Style="{StaticResource TextPrimaryButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding GroupName}" 
+                                                   Margin="3,-7,10,10" 
+                                                   Style="{StaticResource GroupHeaderTextStyle}" />
+                                        <TextBlock Text="{StaticResource ChevronGlyph}"            
+                                                   FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" 
+                                                   Style="{StaticResource GroupHeaderTextStyle}"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
     </Grid>
 </Page>
