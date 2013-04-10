@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <CollectionViewSource x:Name="cvsMain" IsSourceGrouped="True" ItemsPath="Persons"/>
     </Page.Resources>
@@ -16,68 +16,98 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>        
-        <local:VariableGridView x:Name="gvMain"
+
+        <TextBlock Text="Controls App" Margin="120,0,30,40" Style="{StaticResource PageHeaderTextStyle}"/>
+        <SemanticZoom x:Name="semanticZoom" Grid.Row="1">
+            <SemanticZoom.ZoomedInView>
+                <local:VariableGridView x:Name="gvMain"
                                 Grid.Row="1"
                                 Padding="116,37,40,46"
                                 ItemsSource="{Binding Source={StaticResource cvsMain}}">
-            <!--Стиль каждого отдельно взятого элемента-->            
-            <local:VariableGridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Left">
-                        <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                            <Image Source="/Assets/trueAmericanAva.jpg" Stretch="UniformToFill"/>
-                        </Border>
-                        <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                            <TextBlock Text="{Binding FirstName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding LastName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding Age}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </local:VariableGridView.ItemTemplate>
-            <!--Стиль для элементов внутри каждой группы-->
-            <local:VariableGridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate> 
+                    <!--Стиль каждого отдельно взятого элемента-->
+                    <local:VariableGridView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="1,0,0,6">
-                                <Button Style="{StaticResource TextPrimaryButtonStyle}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding GroupName}" 
-                                               Margin="3,-7,10,10" 
-                                               Style="{StaticResource GroupHeaderTextStyle}"/>
-                                    <TextBlock Text="{StaticResource ChevronGlyph}" 
-                                               FontFamily="Segoe UI Symbols" 
-                                               Margin="0,-7,0,10" 
-                                               Style="{StaticResource GroupHeaderTextStyle}"/>                                    
+                            <Grid HorizontalAlignment="Left">
+                                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                                    <Image Source="/Assets/trueAmericanAva.jpg" Stretch="UniformToFill"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                    <TextBlock Text="{Binding FirstName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                                    <TextBlock Text="{Binding LastName}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                                    <TextBlock Text="{Binding Age}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                    <GroupStyle.Panel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Vertical"
+                    </local:VariableGridView.ItemTemplate>
+                    <!--Стиль для элементов внутри каждой группы-->
+                    <local:VariableGridView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,0,0,6">
+                                        <Button Style="{StaticResource TextPrimaryButtonStyle}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding GroupName}" 
+                                               Margin="3,-7,10,10" 
+                                               Style="{StaticResource GroupHeaderTextStyle}"/>
+                                            <TextBlock Text="{StaticResource ChevronGlyph}" 
+                                               FontFamily="Segoe UI Symbols" 
+                                               Margin="0,-7,0,10" 
+                                               Style="{StaticResource GroupHeaderTextStyle}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Vertical"
                                                    Margin="0,0,80,0"
                                                    ItemWidth="160"
                                                    ItemHeight="160"
                                                    MaximumRowsOrColumns="4"/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </local:VariableGridView.GroupStyle>
+                    <!-- Панель для самих групп -->
+                    <local:VariableGridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
-                    </GroupStyle.Panel>
-                </GroupStyle>
-            </local:VariableGridView.GroupStyle>
-            <!--</GridView.GroupStyle>-->
-            <!-- Панель для самих групп -->
-            <!--<GridView.ItemsPanel>-->
-            <local:VariableGridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </local:VariableGridView.ItemsPanel>
-            <!--</GridView.ItemsPanel>-->
-        </local:VariableGridView>
-        <!--</GridView>-->
-        
+                    </local:VariableGridView.ItemsPanel>
+                    <!--</GridView.ItemsPanel>-->
+                </local:VariableGridView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView x:Name="gvZoomedOut"
+                          SelectionMode="None" 
+                          Padding="116,37,40,46">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Group.GroupName}" 
+                                       Style="{StaticResource GroupHeaderTextStyle}"/>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid ItemWidth="200" 
+                                      ItemHeight="200" 
+                                      MaximumRowsOrColumns="1" 
+                                      VerticalChildrenAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Margin" Value="4" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
     </Grid>
 </Page>
