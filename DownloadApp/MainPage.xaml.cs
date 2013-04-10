@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,6 +24,8 @@ namespace DownloadApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,6 +38,38 @@ namespace DownloadApp
         /// обычно используется для настройки страницы.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private async void btnStartDownload_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Адрес файла 
+                var source = new Uri("http://www.адрес_файла.ru/file.dat");
+
+                StorageFile destinationFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("file.dat");
+
+                var downloader = new BackgroundDownloader();
+                DownloadOperation download = downloader.CreateDownload(source, destinationFile);
+
+                var asyncOperation = download.StartAsync();
+
+                var task = asyncOperation.AsTask(_cancellationTokenSource.Token, 
+                    new Progress<DownloadOperation>(DownloadProgress));
+            }
+            catch (Exception ex)
+            {
+                // Обработка ошибок 
+            }
+        }
+
+        private void DownloadProgress(DownloadOperation obj)
+        {
+            var progress = (int)(obj.Progress.BytesReceived * 100 /
+            obj.Progress.TotalBytesToReceive);
+
+            tbDownloadProgress.Text = String.Format("{0}% {1}", progress,
+                                      obj.ResultFile.Name);
         }
     }
 }
