@@ -8,6 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel>
+        <Button x:Name="btnStartDownload" 
+                Content ="Download file"
+                Margin="24"
+                Height="42"
+                Width="126"/>
+        <TextBlock x:Name="tbDownloadProgress" 
+                   Margin="24"
+                   TextWrapping="Wrap"
+                   Text="Downloading hasn't been started yet"
+                   Style="{StaticResource HeaderTextStyle}"/>
+        </StackPanel>
     </Grid>
 </Page>
