@@ -20,11 +20,11 @@ namespace ControlsApp
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class BlankPage2 : Page
     {
         private ObservableCollection<Person> _persons;
         private ObservableCollection<PersonGroup> _groups;
-        public BlankPage1()
+        public BlankPage2()
         {
             this.InitializeComponent();
             _persons = new ObservableCollection<Person>
@@ -77,14 +77,14 @@ namespace ControlsApp
         {
         }
 
-        private void GoToAnotherPage_OnClick(object sender, RoutedEventArgs e)
+        private void GoToTheMainPage_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof (MainPage));
         }
 
-        private void GoToAnotherPage1_OnClick(object sender, RoutedEventArgs e)
+        private void GoToAnotherPage_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (BlankPage2));
+            Frame.Navigate(typeof(BlankPage1));
         }
     }
 }

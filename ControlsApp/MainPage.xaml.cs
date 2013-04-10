@@ -76,5 +76,10 @@ namespace ControlsApp
         {
             Frame.Navigate(typeof(BlankPage1));
         }
+
+        private void GoToAnotherPage1_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (BlankPage2));
+        }
     }
 }

@@ -19,7 +19,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Next" Click="GoToAnotherPage_OnClick"/>
+                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="First" Click="GoToAnotherPage_OnClick"/>
+                    <Button Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Second" Click="GoToAnotherPage1_OnClick"/>
                 </StackPanel>                
             </Grid>
         </AppBar>
