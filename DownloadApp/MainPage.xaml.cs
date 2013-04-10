@@ -29,6 +29,27 @@ namespace DownloadApp
         public MainPage()
         {
             this.InitializeComponent();
+            AttachToProcesses();
+        }
+
+        private async void AttachToProcesses()
+        {
+            try
+            {
+                var downloads = await BackgroundDownloader.GetCurrentDownloadsAsync();
+                var download = downloads.FirstOrDefault();
+
+                if (download != null)
+                {
+                    var task = download.AttachAsync()
+                                       .AsTask(_cancellationTokenSource.Token,
+                                               new Progress<DownloadOperation>(DownloadProgress));
+                }
+            }
+            catch (Exception)
+            {
+                // errors..
+            }
         }
 
         /// <summary>
